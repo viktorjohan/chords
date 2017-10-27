@@ -4,6 +4,8 @@ import Button from 'react-native-button';
 import { TabNavigator } from 'react-navigation';
 import { LinearGradient } from 'expo';
 
+const width = "90%";
+
 export default class Songs extends React.Component {
   static navigationOptions = {
     tabBarLabel: 'Songs',
@@ -68,7 +70,7 @@ export default class Songs extends React.Component {
             <Text style={{backgroundColor: 'transparent', opacity: 0}}>Some</Text>
           </View>
         </LinearGradient>
-      <ScrollView style={{backgroundColor: 'white', marginTop: 0, height: 800}}>
+      <ScrollView style={{backgroundColor: 'white', marginTop: 0, marginBottom: 86}}>
         <View style={{flex: 1, flexDirection: "row", justifyContent: 'center', marginTop: 6}}>
           {/* <Button onPress={this.page2}>Page 2</Button> */}
           <Button
@@ -92,12 +94,12 @@ export default class Songs extends React.Component {
             onPress={() => this.setState({chords: this.state.chords + "4", chordsLetters: this.state.chordsLetters + 'F  '})}
             containerStyle={styles.buttonContainer}
             style={styles.button}
-          ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 8, paddingLeft: 21, color: '#0E8498'}}>F</Text></Button>
+          ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 6, paddingLeft: 21, color: '#0E8498'}}>F</Text></Button>
           <Button
             onPress={() => this.setState({chords: this.state.chords + "5", chordsLetters: this.state.chordsLetters + 'G  '})}
             containerStyle={styles.buttonContainer}
             style={styles.button}
-          ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 8, paddingLeft: 19, color: '#0E8498'}}>G</Text></Button>
+          ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 6, paddingLeft: 17, color: '#0E8498'}}>G</Text></Button>
           <Button
             onPress={() => this.setState({chords: this.state.chords + "6", chordsLetters: this.state.chordsLetters + 'Am  '})}
             containerStyle={styles.buttonContainer}
@@ -134,13 +136,25 @@ export default class Songs extends React.Component {
         >Reset</Button> */}
         {this.state.data.map(function(item, i){
           return (
-            <View style={{marginBottom: 39, alignItems: 'center'}} key={i}>
-              <Text style={{fontFamily: 'Avenir Next', textAlign: 'center', fontSize: 28, color: 'black'}}>{item.artist}</Text>
-              <Text style={{fontSize: 21, fontFamily: 'Avenir Next', color: 'gray'}}>{item.song}</Text>
-              <Text style={{fontFamily: 'AvenirNext-Italic', fontSize: 20, color: 'grey'}}>In the {item.section}</Text>
-              {/* <Text style={{fontFamily: 'Avenir Next', fontSize: 28, color: 'black'}}>The chord is: {item.chord_HTML}</Text>
-              <Text style={{fontFamily: 'AvenirNext-Italic', fontSize: 20, color: 'gray'}}>{item.probability * 100} %</Text> */}
+            <View key={i}>
+            <View style={{marginBottom: 20, marginTop: 20, alignItems: 'flex-start', marginLeft: 17, paddingRight: 10}}>
+              <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 3}}>
+                <Image source={require('../img/man.png')} style={{width: 19, height: 19}}></Image>
+                <Text style={{fontFamily: 'Avenir-Roman', fontSize: 19, marginLeft: 7, color: 'black'}}>{item.artist}</Text>
+              </View>
+              <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 3}}>
+                <Image source={require('../img/musical-note.png')} style={{width: 19, height: 19}}></Image>
+                <Text style={{fontSize: 17, fontFamily: 'Avenir-LightOblique', marginLeft: 7, color: 'black'}}>{item.song}</Text>
+              </View>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Image source={require('../img/double-angle.png')} style={{width: 19, height: 19, opacity: 0.6}}></Image>
+                <Text style={{fontFamily: 'Avenir-Light', fontSize: 17, marginLeft: 7, color: 'black'}}>In the {item.section}</Text>
+              </View>
             </View>
+            <View style={{flex: 1, alignItems: 'center'}}>
+              <View style={{width: width, height: 1, backgroundColor: 'gray'}}></View>
+            </View>
+          </View>
           )
         })}
       </ScrollView>
@@ -162,7 +176,7 @@ const styles = StyleSheet.create({
     height: 78,
     width: 78,
     overflow:'hidden',
-    borderWidth: 2,
+    borderWidth: 4,
     borderColor: "#00E7EE",
     borderRadius: 4,
     backgroundColor: 'transparent'
