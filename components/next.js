@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity, TextInput 
 import Button from 'react-native-button';
 import { TabNavigator } from 'react-navigation';
 import { LinearGradient } from 'expo';
+import { DotIndicator } from 'react-native-indicators';
 
 const width = "70%";
 
@@ -12,7 +13,7 @@ export default class Next extends React.Component {
     tabBarIcon: ({tintColor}) => (
       <Image
         source={require('../img/right-arrow.png')}
-        style={{width: 22, height: 22, marginTop: 14, tintColor: '#579BE6', opacity: 0.9}}>
+        style={{width: 22, height: 22, marginTop: 14, tintColor: tintColor, opacity: 0.9}}>
       </Image>
     )
   };
@@ -21,26 +22,14 @@ export default class Next extends React.Component {
     this.state = {
       nextChordData: [],
       nextChord: [],
-      nextChordLetters: ''
+      nextChordLetters: '',
+      animating: false,
+      error: ''
     }
   }
 
-  // doubleFunc = () => {
-  //   this.joinArray();
-  //   this.getNextChord();
-  // }
-
-  // joinArray = () => {
-  //   // let a = this.state.nextChord;
-  //   // console.log(a);
-  //   // a.join();
-  //
-  //   var a = Array.prototype.slice.call(this.state.nextChord);
-  //   a.join();
-  //   console.log(a);
-  // }
-
   getNextChord = () => {
+    this.setState({animating: true});
     var a = Array.prototype.slice.call(this.state.nextChord);
     a.join();
     fetch('https://api.hooktheory.com/v1/trends/nodes?cp=' + a, {
@@ -51,10 +40,15 @@ export default class Next extends React.Component {
     })
     .then((response) => response.json())
     .then((response) => {
-
       this.setState({
         nextChordData: response
       });
+    }).then(() => {
+      this.setState({
+        animating: false
+      });
+    }).catch((error) => {
+      this.setState({error: "Sorry, we can't find the next chord with that progression", animating: false});
     });
   }
   render(){
@@ -69,36 +63,35 @@ export default class Next extends React.Component {
         </LinearGradient>
       <ScrollView style={{backgroundColor: 'white', marginTop: 0, marginBottom: 86}}>
         <View style={{flex: 1, flexDirection: "row", justifyContent: 'center', marginTop: 6}}>
-          {/* <Button onPress={this.page2}>Page 2</Button> */}
           <Button
-            onPress={() => this.setState({nextChord: this.state.nextChord + "1", nextChordLetters: this.state.nextChordLetters + 'C '})}
+            onPress={() => this.setState({nextChord: this.state.nextChord + "1", nextChordLetters: this.state.nextChordLetters + 'C  '})}
             containerStyle={styles.buttonContainer}
             style={styles.button}
           ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 6, paddingLeft: 18, color: '#0E8498'}}>C</Text></Button>
           <Button
-            onPress={() => this.setState({nextChord: this.state.nextChord + "2", nextChordLetters: this.state.nextChordLetters + 'Dm '})}
+            onPress={() => this.setState({nextChord: this.state.nextChord + "2", nextChordLetters: this.state.nextChordLetters + 'Dm  '})}
             containerStyle={styles.buttonContainer}
             style={styles.button}
           ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 6, paddingLeft: 4, color: '#0E8498'}}>Dm</Text></Button>
           <Button
-            onPress={() => this.setState({nextChord: this.state.nextChord + "3", nextChordLetters: this.state.nextChordLetters + 'Em '})}
+            onPress={() => this.setState({nextChord: this.state.nextChord + "3", nextChordLetters: this.state.nextChordLetters + 'Em  '})}
             containerStyle={styles.buttonContainer}
             style={styles.button}
           ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 6, paddingLeft: 5, color: '#0E8498'}}>Em</Text></Button>
         </View>
           <View style={{flex: 1, flexDirection: "row", justifyContent: 'center', marginBottom: 20}}>
           <Button
-            onPress={() => this.setState({nextChord: this.state.nextChord + "4", nextChordLetters: this.state.nextChordLetters + 'F '})}
+            onPress={() => this.setState({nextChord: this.state.nextChord + "4", nextChordLetters: this.state.nextChordLetters + 'F  '})}
             containerStyle={styles.buttonContainer}
             style={styles.button}
           ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 6, paddingLeft: 21, color: '#0E8498'}}>F</Text></Button>
           <Button
-            onPress={() => this.setState({nextChord: this.state.nextChord + "5", nextChordLetters: this.state.nextChordLetters + 'G '})}
+            onPress={() => this.setState({nextChord: this.state.nextChord + "5", nextChordLetters: this.state.nextChordLetters + 'G  '})}
             containerStyle={styles.buttonContainer}
             style={styles.button}
           ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 6, paddingLeft: 17, color: '#0E8498'}}>G</Text></Button>
           <Button
-            onPress={() => this.setState({nextChord: this.state.nextChord + "6", nextChordLetters: this.state.nextChordLetters + 'Am '})}
+            onPress={() => this.setState({nextChord: this.state.nextChord + "6", nextChordLetters: this.state.nextChordLetters + 'Am  '})}
             containerStyle={styles.buttonContainer}
             style={styles.button}
           ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 6, paddingLeft: 5, color: '#0E8498'}}>Am</Text></Button>
@@ -120,9 +113,15 @@ export default class Next extends React.Component {
               <Text style={{textAlign: 'center', fontSize: 18, paddingTop: 17, color: 'white', backgroundColor: 'transparent', fontFamily: 'AvenirNext-Regular', marginBottom: 16}}>Reset</Text>
             </LinearGradient>
           </TouchableOpacity>
+          {this.state.animating &&
+            <DotIndicator
+                 color = 'lightblue'
+                 count = {4}
+                 size = {11}
+                 style = {styles.activityIndicator}/>
+          }
         </View>
         {this.state.nextChordData.slice(0, 8).map(function(item, i){
-          console.log(item.chord_HTML)
           {
             if (item.chord_HTML == "IV") {
               item.chord_HTML = "F"
@@ -216,14 +215,14 @@ export default class Next extends React.Component {
               item.chord_HTML = 'G'
             } else if (item.chord_HTML == 'I<sup>6</sup><sub>4</sub>') {
               item.chord_HTML = 'C6sus4'
+            } else if (item.chord_HTML == 'iii<sup>4</sup><sub>2</sub>') {
+              item.chord_HTML = 'Em4sus2'
             }
           }
-
           {
             var number = item.probability;
             var roundedNumber = Math.ceil(number * 100);
           }
-
           return (
             <View key={i}>
               <View style={{marginBottom: 20}} key={i}>

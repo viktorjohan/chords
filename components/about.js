@@ -10,7 +10,7 @@ export default class About extends React.Component {
     tabBarIcon: ({tintColor}) => (
       <Image
         source={require('../img/information.png')}
-        style={{width: 22, height: 22, marginTop: 14, tintColor: '#579BE6', opacity: 0.9}}>
+        style={{width: 22, height: 22, marginTop: 14, tintColor: tintColor, opacity: 0.9}}>
       </Image>
     )
   };
@@ -25,13 +25,13 @@ export default class About extends React.Component {
           </View>
         </LinearGradient>
         <ScrollView>
-          <View style={{flex: 1, alignItems: 'center', marginTop: 20, marginBottom: 100, paddingLeft: 19, paddingRight: 19}}>
+          <View style={{flex: 1, alignItems: 'center', marginTop: 20, marginBottom: 100, paddingLeft: 39, paddingRight: 39}}>
             <Image source={require('../img/information-blue.png')} style={{height: 40, width: 40}}></Image>
-            <Text style={{fontSize: 18, fontFamily: 'Avenir-Light', marginTop: 20}}>Hooktheory's API exposes the chord probability data used in Hooktheory's Theorytab Trends page. The chords surrounding the chord(s) you chose are the ones that come next most often. The percentage tells you how often.</Text>
+            <Text style={{fontSize: 18, fontFamily: 'Avenir-Light', marginTop: 20}}>For this app, we use the API provided by Hooktheory.com. The API exposes the chord probability data used in Hooktheory's Theorytab Trends page. The database consists of 16 000 analyzed songs.</Text>
             <Image source={require('../img/musical-note-blue.png')} style={{height: 40, width: 40, marginTop: 20}}></Image>
-            <Text style={{fontSize: 18, fontFamily: 'Avenir-Light', marginTop: 20}}>Hooktheory's API exposes the chord probability data used in Hooktheory's Theorytab Trends page. The chords surrounding the chord(s) you chose are the ones that come next most often. The API contains two endpoints: one for "next chord containing a chord progression".</Text>
+            <Text style={{fontSize: 18, fontFamily: 'Avenir-Light', marginTop: 20}}>The default key is C and the options are the six most common chords used in this key.</Text>
             <Image source={require('../img/piano-blue.png')} style={{height: 40, width: 40, marginTop: 20}}></Image>
-            <Text style={{fontSize: 18, fontFamily: 'Avenir-Light', marginTop: 20}}>The API contains two endpoints: one  containing a chord progression". The API exposes the chord probability data used in Hooktheory’s database. Hooktheory's API exposes the chord probability data used in Hooktheory's Theorytab Trends page. The chords surrounding the chordcome next most often.</Text>
+            <Text style={{fontSize: 18, fontFamily: 'Avenir-Light', marginTop: 20}}>You can find songs that have the same chords and the most likely chords to follow any progression. Also, in the Play-section, you can play the six most common chords in the key C.</Text>
           </View>
         </ScrollView>
       </View>
@@ -40,38 +40,7 @@ export default class About extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonContainer: {
-    margin: 12,
-    padding: 4,
-    height: 78,
-    width: 78,
-    overflow:'hidden',
-    borderWidth: 4,
-    borderColor: "#00E7EE",
-    borderRadius: 4,
-    backgroundColor: 'transparent'
-  },
-  button: {
-    fontSize: 36,
-    paddingTop: 7,
-    fontFamily: 'AvenirNext-Heavy',
-    color: '#579BE6'
-  },
   linearGradient: {
     height: 80
-  },
-  buttonText: {
-    fontSize: 18,
-    fontFamily: 'Gill Sans',
-    textAlign: 'center',
-    margin: 10,
-    color: '#ffffff',
-    backgroundColor: 'transparent',
-  },
+  }
 });

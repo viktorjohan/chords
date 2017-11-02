@@ -2,9 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity, TextInput } from 'react-native';
 import Button from 'react-native-button';
 import { TabNavigator } from 'react-navigation';
-import { LinearGradient } from 'expo';
-import { Audio } from 'expo';
-
+import { LinearGradient, Audio } from 'expo';
 
 export default class Play extends React.Component {
 
@@ -55,12 +53,12 @@ export default class Play extends React.Component {
     tabBarIcon: ({tintColor}) => (
       <Image
         source={require('../img/piano.png')}
-        style={{width: 22, height: 22, marginTop: 14, tintColor: '#579BE6', opacity: 0.9}}>
+        style={{width: 22, height: 22, marginTop: 14, tintColor: tintColor, opacity: 0.9}}>
       </Image>
     )
   };
   render(){
-    return(
+    return (
       <View>
         <LinearGradient start={{x: 0.0, y: 0.0}} end={{x: 1.3, y: 0.1}} colors={['#00E7EE', '#579BE6']} style={styles.linearGradient}>
           <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around'}}>
@@ -69,45 +67,47 @@ export default class Play extends React.Component {
             <Text style={{backgroundColor: 'transparent', opacity: 0}}>Some</Text>
           </View>
         </LinearGradient>
-      <ScrollView style={{backgroundColor: 'white', marginTop: 0, marginBottom: 86}}>
-      <View style={{flex: 1, flexDirection: "row", justifyContent: 'center', marginTop: 6}}>
-        {/* <Button onPress={this.page2}>Page 2</Button> */}
-        <Button
-          onPress={this.playC}
-          containerStyle={styles.buttonContainer}
-          style={styles.button}
-        ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 6, paddingLeft: 18, color: '#0E8498'}}>C</Text></Button>
-        <Button
-          onPress={this.playDm}
-          containerStyle={styles.buttonContainer}
-          style={styles.button}
-        ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 6, paddingLeft: 4, color: '#0E8498'}}>Dm</Text></Button>
-        <Button
-          onPress={this.playEm}
-          containerStyle={styles.buttonContainer}
-          style={styles.button}
-        ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 6, paddingLeft: 5, color: '#0E8498'}}>Em</Text></Button>
+        <ScrollView style={{backgroundColor: 'white', marginTop: 0, marginBottom: 86}}>
+          <View style={{flex: 1, flexDirection: "row", justifyContent: 'center', marginTop: 6}}>
+            <Button
+              onPress={this.playC}
+              containerStyle={styles.buttonContainer}
+              style={styles.button}
+            ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 6, paddingLeft: 18, color: '#0E8498'}}>C</Text></Button>
+            <Button
+              onPress={this.playDm}
+              containerStyle={styles.buttonContainer}
+              style={styles.button}
+            ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 6, paddingLeft: 4, color: '#0E8498'}}>Dm</Text></Button>
+            <Button
+              onPress={this.playEm}
+              containerStyle={styles.buttonContainer}
+              style={styles.button}
+            ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 6, paddingLeft: 5, color: '#0E8498'}}>Em</Text></Button>
+          </View>
+          <View style={{flex: 1, flexDirection: "row", justifyContent: 'center', marginBottom: 20}}>
+            <Button
+              onPress={this.playF}
+              containerStyle={styles.buttonContainer}
+              style={styles.button}
+            ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 6, paddingLeft: 21, color: '#0E8498'}}>F</Text></Button>
+            <Button
+              onPress={this.playG}
+              containerStyle={styles.buttonContainer}
+              style={styles.button}
+            ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 6, paddingLeft: 17, color: '#0E8498'}}>G</Text></Button>
+            <Button
+              onPress={this.playAm}
+              containerStyle={styles.buttonContainer}
+              style={styles.button}
+            ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 6, paddingLeft: 5, color: '#0E8498'}}>Am</Text></Button>
+          </View>
+          <View style={{alignItems: 'center'}}>
+            <Image source={require('../img/speaker-2.png')} style={{height: 150, width: 150, opacity: 0.6}}></Image>
+          </View>
+        </ScrollView>
       </View>
-        <View style={{flex: 1, flexDirection: "row", justifyContent: 'center', marginBottom: 20}}>
-        <Button
-          onPress={this.playF}
-          containerStyle={styles.buttonContainer}
-          style={styles.button}
-        ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 6, paddingLeft: 21, color: '#0E8498'}}>F</Text></Button>
-        <Button
-          onPress={this.playG}
-          containerStyle={styles.buttonContainer}
-          style={styles.button}
-        ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 6, paddingLeft: 17, color: '#0E8498'}}>G</Text></Button>
-        <Button
-          onPress={this.playAm}
-          containerStyle={styles.buttonContainer}
-          style={styles.button}
-        ><Text style={{fontFamily: 'Avenir-Light', fontSize: 36, paddingTop: 6, paddingLeft: 5, color: '#0E8498'}}>Am</Text></Button>
-      </View>
-    </ScrollView>
-  </View>
-    )
+    );
   }
 }
 
