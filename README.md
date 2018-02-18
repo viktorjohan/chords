@@ -1,4 +1,6 @@
-![alt text](https://media.giphy.com/media/upztYklL3VhNm/giphy.gif)
+<div style="text-align:center">
+  <img src="./img/splashchords.png" />
+</div>
 
 ### Description
 
