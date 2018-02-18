@@ -1,6 +1,6 @@
-<div style="text-align:center">
+<p align="center">
   <img src="./img/splashchords.png" />
-</div>
+</p>
 
 ### Description
 
