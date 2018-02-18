@@ -1,5 +1,7 @@
+# Chords
+
 <p align="center">
-  <img src="./img/splashchords.png" />
+  <img width="400" src="./img/splashchords.png" />
 </p>
 
 ### Description
